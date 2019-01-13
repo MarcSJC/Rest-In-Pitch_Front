@@ -1,0 +1,63 @@
+<div class="jumbotron">
+  <h1 class="display-3 text-center">Welcome ! This is Rest-In-Pitch</h1>
+  <p class="lead text-center">...</p>
+</div>
+
+<div class="container h-100">
+  <div class="row">
+    <div class="col-md-5 align-center">
+      <div class="card" >
+        <div class="card-body">
+          <h4 class="card-title">Sign Up Here</h4>
+          <hr class="my-4">
+          <div class="card-text">
+            <form (ngSubmit)="addUser()" #userForm="ngForm">
+              <div class="form-group">
+                <label for="username">Username</label>
+
+                <div class="form-group">
+                  <input type="text" class="form-control" [(ngModel)]="user.username" name="username" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" [(ngModel)]="user.password" name="password" required>
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btn btn-success" [disabled]="!userForm.form.valid">Sign Up</button>
+                <a (click)="backClicked()" class="btn btn-danger" role="button">Cancel</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-2 align-center">
+    </div>
+
+    <div class="col-md-5 align-center">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title"> Already an account ?</h4>
+          <hr class="my-4">
+          <div class="card-text"><form (ngSubmit)="login()" #logForm="ngForm">
+            <div class="form-group">
+              <label for="name">Username</label>
+              <input type="text" class="form-control" [(ngModel)]="log.username" name="username" required>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" [(ngModel)]="log.password" name="password" required>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-success" [disabled]="!logForm.form.valid">Connection</button>
+              <a (click)="backClicked()" class="btn btn-danger" role="button">Cancel</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>

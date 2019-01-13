@@ -1,0 +1,43 @@
+<div class="jumbotron">
+  <!-- <span class="container"> -->
+    <div class="row">
+      <div class="col-1">
+      <div *ngIf="user == null || userSize === 0">
+        <a [routerLink]="['/user-create']" class="btn btn-primary" role="button">Sign Up</a>
+      </div>
+
+      <div class="list-group" *ngIf="userSize > 0">
+        <a [routerLink]="['/show']" class="list-group-item list-group-item-action active">
+          Hi {{ username}}</a>
+        <a [routerLink]="['/watchlist']" class="list-group-item list-group-item-action" role ="button">Watchlist</a>
+        <a (click)="logout()" class="list-group-item list-group-item-action" role="button">Logout</a>
+      </div>
+    </div>
+  <div class="col-11">
+  <h1 class="display-3 text-center">This is Rest-In-Pitch</h1>
+  <!-- <p class="lead text-center">...</p> -->
+</div>
+</div>
+
+</div>
+
+<div class="container">
+  <hr class="my-4">
+  <h2>Watchlist :</h2>
+  <hr class="my-4">
+
+  <div class="row" >
+    <div class="col-3 mb-2" *ngFor="let show of shows">
+      <div class="card text-white bg-secondary mb-3" style="width: 13.1rem; height: 24rem;" >
+        <div class="text-center">
+	         <img class="rounded" src={{show.image}} onerror="this.src='./assets/unavailable.png'" alt="show image" onkeypress="" style="width: 13rem;" />
+           <div class="card-body">
+             <h6 class="card-title" class="text-bold text-truncate">
+              {{ show.name }}</h6>
+              <a [routerLink]="['/show-detail', show.id]" class="btn btn-secondary" role="button">See more</a>
+           </div>
+         </div>
+     </div>
+   </div>
+ </div>
+</div>

@@ -1,0 +1,185 @@
+<div class="jumbotron">
+  <div class="row">
+    <div class="col">
+      <div *ngIf="user == null || userSize === 0" class="d-inline">
+        <a [routerLink]="['/user-create']" class="btn btn-primary" role="button">Sign Up</a>
+      </div>
+      <div class="list-group d-inline-block" *ngIf="userSize > 0" style="max-width: 200px;">
+        <p  class="list-group-item list-group-item active">
+          Hi {{ username}}</p>
+        <a [routerLink]="['/watchlist']" class="list-group-item list-group-item-action" role ="button">Watchlist</a>
+        <a (click)="logout()" class="list-group-item list-group-item-action" role="button">Logout</a>
+      </div>
+    </div>
+    <div class="col-9"><h1 class="display-3" >This is Rest-In-Pitch</h1></div>
+  </div>
+</div>
+
+<!-- la searchbar -->
+<div class="container h-100">
+    <div class="searchbar">
+        <input class="search_input"  id="search" type="text" name="" placeholder="Search...">
+        <a (click)="search()" class="search_icon"><i class="fa fa-search"></i></a>
+    </div>
+     <hr class="my-4">
+      <!-- les checkbox  -->
+     <div class="row">
+      <div class="col-sm">
+
+        <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="customCheck1"  value="Action" >
+        <label class="custom-control-label" for="customCheck1">Action</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="customCheck2"  value="Adult" >
+        <label class="custom-control-label" for="customCheck2">Adult</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="customCheck3"  value="Adventure" >
+        <label class="custom-control-label" for="customCheck3">Adventure</label>
+        </div>
+
+        <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="customCheck4"  value="Anime" >
+        <label class="custom-control-label" for="customCheck4">Anime</label>
+        </div>
+
+        <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="customCheck5"  value="Children" >
+        <label class="custom-control-label" for="customCheck5">Children</label>
+        </div>
+
+        <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="customCheck6"  value="Comedy" >
+        <label class="custom-control-label" for="customCheck6">Comedy</label>
+        </div>
+</div>
+    <div class="col-sm">
+        <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="customCheck7"  value="Crime" >
+        <label class="custom-control-label" for="customCheck7">Crime</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="customCheck8"  value="DIY" >
+        <label class="custom-control-label" for="customCheck8">DIY</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="customCheck9"  value="Drama" >
+        <label class="custom-control-label" for="customCheck9">Drama</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="customCheck10"  value="Espionage" >
+        <label class="custom-control-label" for="customCheck10"> Espionage</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="customCheck11"  value="Family" >
+        <label class="custom-control-label" for="customCheck11">Family</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="customCheck12"  value="Fantaisy" >
+        <label class="custom-control-label" for="customCheck12">Fantaisy</label>
+        </div>
+</div>
+    <div class="col-sm">
+        <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="customCheck13" value = "Food" >
+        <label class="custom-control-label" for="customCheck13">Food</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="customCheck14"  value="History" >
+        <label class="custom-control-label" for="customCheck14">History</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="customCheck144"  value="Horror" >
+        <label class="custom-control-label" for="customCheck144">Horror</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="customCheck15"  value="Legal" >
+        <label class="custom-control-label" for="customCheck15">Legal</label>
+      </div>
+        <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="customCheck16"  value="Medical" >
+        <label class="custom-control-label" for="customCheck16">Medical</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="customCheck166"  value="Music" >
+        <label class="custom-control-label" for="customCheck166">Music</label>
+        </div>
+  </div>
+    <div class="col-sm">
+        <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="customCheck17"  value="Mystery" >
+        <label class="custom-control-label" for="customCheck17">Mystery</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="customCheck18"  value="Nature" >
+        <label class="custom-control-label" for="customCheck18">Nature</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="customCheck19"  value="Romance" >
+        <label class="custom-control-label" for="customCheck19">Romance</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="customCheck20"  value="Science-Fiction" >
+        <label class="custom-control-label" for="customCheck20">Science-Fiction</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="customCheck21"  value="Sport" >
+        <label class="custom-control-label" for="customCheck21">Sport</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="customCheck22"  value="Supernatural" >
+        <label class="custom-control-label" for="customCheck22">Supernatural</label>
+        </div>
+  </div>
+      <div class="col-sm">
+        <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="customCheck23"  value="Thriller" >
+        <label class="custom-control-label" for="customCheck23">Thriller</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="customCheck24"  value="Travel" >
+        <label class="custom-control-label" for="customCheck24">Travel</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="customCheck25"  value="War" >
+        <label class="custom-control-label" for="customCheck25">War</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="customCheck26"  value="Western" >
+        <label class="custom-control-label" for="customCheck26">Western</label>
+        </div>
+    </div>
+
+  </div>
+  <!-- fin checkbox  -->
+</div>
+<!-- fin searchbar  -->
+
+<!-- affichage des series  -->
+<div class="container">
+  <hr class="my-4">
+  <h2>Suggestions :</h2>
+  <div class="row" >
+    <div class="col-3 mb-2" *ngFor="let show of shows">
+      <div class="card text-white bg-secondary mb-3" style="width: 13.1rem; height: 24rem;" >
+        <div class="text-center">
+	         <img class="rounded" src={{show.image}} onerror="this.src='./assets/unavailable.png'" alt="show image" onkeypress="" style="width: 13rem;" />
+           <div class="card-body">
+             <h6 class="card-title" class="text-bold text-truncate">
+              {{ show.name }}</h6>
+              <a [routerLink]="['/show-detail', show.id]" class="btn btn-secondary" role="button">See more</a>
+           </div>
+         </div>
+     </div>
+   </div>
+ </div>
+</div>
+<!-- <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
+  <div class="btn-group mr-2" role="group" aria-label="First group">
+    <a (click)="getNextPage(1)"class="btn btn-secondary" role="button">1</a>
+    <a (click)="getNextPage(2)"class="btn btn-secondary" role="button">2</a>
+    <a (click)="getNextPage(3)"class="btn btn-secondary" role="button">3</a>
+    <a (click)="getNextPage(4)"class="btn btn-secondary" role="button">4</a>
+  </div>
+</div> -->

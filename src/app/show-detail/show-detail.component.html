@@ -1,0 +1,48 @@
+<div class="container" *ngIf="show">
+<!-- <img class="rounded" src={{show.image}} onerror="this.src='./assets/unavailable.png'" alt="show image"style="opacity:0.2;" /> -->
+<div class="text-center" >
+  <hr class="my-4">
+
+  <h1>{{ show?.name }}</h1>
+  <hr class="my-4">
+
+</div>
+  <div class="card border-light mb-3" >
+
+    <div class="card-body">
+      <img class="rounded" src={{show?.image}} onerror="this.src='./assets/unavailable.png'" alt="show image" />
+      <div class="row">
+      <div  class="sm" *ngFor="let genre of show.genres;">
+          <div class="col">
+        <span class="badge badge-success">{{genre}}</span></div>
+      </div>
+      </div>
+      <hr class="my-4">
+      <span>
+        <dl class="list">
+        <dt>Summary :</dt>
+        <dd>{{ show?.summary }}</dd>
+        <dt>Country : </dt>
+        <dd>{{ show?.country }}</dd>
+        <dt>Premiere : </dt>
+        <dd>{{ show?.premiere }}</dd>
+        <dt>Offsite : </dt>
+        <dd>{{ show?.offsite }}</dd>
+        <dt>Rating :</dt>
+        <dd>{{ show?.rating }}</dd>
+        </dl>
+      </span>
+      <div *ngIf="user == null || userSize === 0">
+      <a (click)="backClicked()" class="btn btn-primary" role="button">Go Back</a>
+      </div>
+
+      <div>
+      <div *ngIf="userSize > 0">
+        <a (click)="backClicked()" class="btn btn-primary" role="button">Go Back</a>
+        <a (click)="addToWatchlist()" class="btn btn-success" role="button">Add to Watchlist</a>
+      </div>
+  </div>
+
+</div>
+</div>
+</div>

@@ -1,0 +1,20 @@
+
+<h1>Results : {{name}}</h1>
+<div class="row" >
+  <div class="col-auto mb-3" *ngFor="let show of shows">
+    <div class="card text-white bg-secondary mb-3" style="width: 18rem; height: 30rem;">
+    <div class="card-header"><p class="text-truncate">{{ show.name }}</p></div>
+    <div class="card-body">
+      <div class="text-center">
+      <img class="rounded" src={{show.image}} onerror="this.src='./assets/unavailable.png'" alt="show image" />
+      </div>
+      <!-- <h6 class="card-title" class="font-weight-bold">Summary :</h6> -->
+      <p class="card-text" class="text-muted" class="text-truncate"> {{show.summary}}</p>
+      <span class="badge badge-success">{{ show.genres[0] }}</span>
+      <span class="badge badge-success">{{ show.genres[1] }}</span>
+      <span class="badge badge-success">{{ show.genres[2] }}</span>
+    </div>
+    <a [routerLink]="['/show-detail', show.id]" class="btn btn-secondary" role="button">See more</a>
+    </div>
+  </div>
+</div>
