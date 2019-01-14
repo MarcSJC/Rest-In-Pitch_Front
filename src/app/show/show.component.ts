@@ -36,7 +36,13 @@ export class ShowComponent implements OnInit {
    }
 
   search() :void {
-     this.res = (<HTMLInputElement>document.getElementById("search")).value;
+    this.res = (<HTMLInputElement>document.getElementById("search")).value;
+    if(this.res.length == 0) {
+      this.http.get('http://localhost:8080/rest-in-pitch/rest/shows/random/12').subscribe(data => {
+      this.shows = data;
+      });
+    }
+
     let checkboxes = (<HTMLInputElement[]><any>document.getElementsByClassName('custom-control-input'));
     let values : string[] = [];
 
@@ -60,21 +66,8 @@ export class ShowComponent implements OnInit {
       });
   }
 
-  // watchlist() {
-  //   this.http.post('http://localhost:8080/rest-in-pitch/rest/watchlist', this.user).subscribe(data => {
-  //         //this.router.navigate(['/show']);
-  //         this.shows = data;
-  //       }, (err) => {
-  //         console.log(err);
-  //       }
-  //     );
-  // }
-
   logout(){
     localStorage.clear();
     window.location.reload();
  }
 }
-
-// let params = new HttpParams().set("paramName",paramValue).set("paramName2", paramValue2); //Create new HttpParams
-// this.http.get(url, {headers: headers, params: params});

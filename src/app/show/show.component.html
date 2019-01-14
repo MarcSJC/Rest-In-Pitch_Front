@@ -18,8 +18,8 @@
 <!-- la searchbar -->
 <div class="container h-100">
     <div class="searchbar">
-        <input class="search_input"  id="search" type="text" name="" placeholder="Search...">
-        <a (click)="search()" class="search_icon"><i class="fa fa-search"></i></a>
+        <input class="search_input"  id="search" type="text" name="" placeholder="Search..." role="button" (keyup.enter)="search()">
+        <a (click)="search()"  class="search_icon" role="button"><i (input)="search()" class="fa fa-search" role="button"></i></a>
     </div>
      <hr class="my-4">
       <!-- les checkbox  -->
@@ -159,7 +159,9 @@
 <!-- affichage des series  -->
 <div class="container">
   <hr class="my-4">
-  <h2>Suggestions :</h2>
+  <h2 *ngIf="shows?.length > 0">Results : {{shows?.length}} shows</h2>
+  <h2 *ngIf="shows?.length == 0">No results</h2>
+
   <div class="row" >
     <div class="col-3 mb-2" *ngFor="let show of shows">
       <div class="card text-white bg-secondary mb-3" style="width: 13.1rem; height: 24rem;" >
