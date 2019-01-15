@@ -10,8 +10,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UserCreateComponent implements OnInit {
 
-  user = {};
-  log = {};
+  user = <any>{};
+  log = <any>{};
 
   constructor(private http: HttpClient, private router: Router, private location: Location) { }
 
