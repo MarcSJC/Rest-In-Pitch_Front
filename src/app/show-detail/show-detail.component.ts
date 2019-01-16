@@ -38,14 +38,15 @@ export class ShowDetailComponent implements OnInit {
 
  addToWatchlist() {
    let id = Object.values(this.show)[0];
-   this.user = localStorage.getItem('currentUser') ||'{}';
-   let httpOpt = {
-   		responseType: 'text'/*,
+   //this.user = localStorage.getItem('currentUser') ||'{}';
+   this.user = JSON.parse(localStorage.getItem('currentUser') ||'{}');
+   /*let httpOpt = {
+   		responseType: 'text',
    		new HttpHeaders({
    			'Authorization': this.user
-   		})*/
-	}
-   let preq = this.http.post('https://rest-in-pitch.herokuapp.com/rest/watchlist/add/' + id, this.user, httpOpt);
+   		})
+	}*/
+   let preq = this.http.post('https://rest-in-pitch.herokuapp.com/rest/watchlist/add/' + id, this.user, { responseType: 'text' });
      preq.subscribe(res => {
        }, (err) => {
          console.log(err);
