@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { ParamMap, Router, ActivatedRoute } from '@angular/router';
 
+const httpOpt = {
+  headers : new HttpHeaders({'Content-Type': 'application/json'})
+}
 
 @Component({
   selector: 'app-watchlist',
@@ -25,7 +28,7 @@ export class WatchlistComponent implements OnInit {
       this.username = String(Object.values(this.user)[0]);
     }
 
-    this.http.post('https://rest-in-pitch.herokuapp.com/rest/watchlist', this.user).subscribe(data => {
+    this.http.post('https://rest-in-pitch.herokuapp.com/rest/watchlist', this.user, httpOpt).subscribe(data => {
           this.shows = data;
         }, (err) => {
           console.log(err);
