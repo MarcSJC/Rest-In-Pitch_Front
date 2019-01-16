@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { ParamMap, Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -38,9 +38,15 @@ export class ShowDetailComponent implements OnInit {
 
  addToWatchlist() {
    let id = Object.values(this.show)[0];
-   this.user = JSON.parse(localStorage.getItem('currentUser') ||'{}');
-   this.http.post('http://localhost:8080/rest-in-pitch/rest/watchlist/add/' + id, this.user,  { responseType: 'text'})
-     .subscribe(res => {
+   this.user = localStorage.getItem('currentUser') ||'{}';
+   let httpOpt = { 
+   		responseType: 'text'/*,
+   		new HttpHeaders({
+   			'Authorization': this.user
+   		})*/
+	}
+   let preq = this.http.post('http://localhost:8080/rest-in-pitch/rest/watchlist/add/' + id, this.user, httpOpt);
+     preq.subscribe(res => {
        }, (err) => {
          console.log(err);
        }
