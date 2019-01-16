@@ -1,24 +1,18 @@
 <div class="jumbotron">
-  <!-- <span class="container"> -->
-    <div class="row">
-      <div class="col-1">
-      <div *ngIf="user == null || userSize === 0">
+  <div class="row">
+    <div class="col">
+      <div *ngIf="user == null || userSize === 0" class="d-inline">
         <a [routerLink]="['/user-create']" class="btn btn-primary" role="button">Sign Up</a>
       </div>
-
-      <div class="list-group" *ngIf="userSize > 0">
+      <div class="list-group d-inline-block" *ngIf="userSize > 0" style="max-width: 200px;">
         <a [routerLink]="['/show']" class="list-group-item list-group-item-action active">
           Hi {{ username}}</a>
         <a [routerLink]="['/watchlist']" class="list-group-item list-group-item-action" role ="button">Watchlist</a>
         <a (click)="logout()" class="list-group-item list-group-item-action" role="button">Logout</a>
       </div>
     </div>
-  <div class="col-11">
-  <h1 class="display-3 text-center">This is Rest-In-Pitch</h1>
-  <!-- <p class="lead text-center">...</p> -->
-</div>
-</div>
-
+    <div class="col-9"><h1 class="display-3" >This is Rest-In-Pitch</h1></div>
+  </div>
 </div>
 
 <div class="container">
