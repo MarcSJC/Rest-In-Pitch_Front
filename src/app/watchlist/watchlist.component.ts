@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { ParamMap, Router, ActivatedRoute } from '@angular/router';
 
 const httpOpt = {
-  headers : new HttpHeaders({'Content-Type': 'application/json'})
+  headers : new HttpHeaders({'responseType': 'application/json', 'Content-Type': 'application/json'})
 }
 
 @Component({
