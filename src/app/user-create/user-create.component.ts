@@ -20,9 +20,9 @@ export class UserCreateComponent implements OnInit {
 
   addUser() {
     this.user.password = sha512(this.user.password);
-    this.http.post('http://localhost:8080/rest-in-pitch/rest/user/register', this.user).subscribe(res => {
+    this.http.post('https://rest-in-pitch.herokuapp.com/rest/user/register', this.user).subscribe(res => {
         // login :
-        this.http.post('http://localhost:8080/rest-in-pitch/rest/user/login', this.user,  { responseType: 'text'})
+        this.http.post('https://rest-in-pitch.herokuapp.com/rest/user/login', this.user,  { responseType: 'text'})
           .subscribe(res => {
             localStorage.setItem('currentUser', res);
             this.router.navigate(['/show']);
@@ -38,7 +38,7 @@ export class UserCreateComponent implements OnInit {
 
   login() {
     this.log.password = sha512(this.log.password);
-    this.http.post('http://localhost:8080/rest-in-pitch/rest/user/login', this.log,  { responseType: 'text'})
+    this.http.post('https://rest-in-pitch.herokuapp.com/rest/user/login', this.log,  { responseType: 'text'})
       .subscribe(res => {
         localStorage.setItem('currentUser', res);
         this.router.navigate(['/show']);

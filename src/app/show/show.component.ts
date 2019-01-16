@@ -24,13 +24,14 @@ export class ShowComponent implements OnInit {
       this.username = String(Object.values(this.user)[0]);
     }
 
-    this.http.get('http://localhost:8080/rest-in-pitch/rest/shows/random/12').subscribe(data => {
+    //http://localhost:8080/rest-in-pitch/rest/shows/random/12
+    this.http.get('https://rest-in-pitch.herokuapp.com/rest/shows/random/12').subscribe(data => {
     this.shows = data;
   });
   }
 
   getNextPage(page) {
-     this.http.get('http://localhost:8080/rest-in-pitch/rest/shows/page/'+page).subscribe( data => {
+     this.http.get('https://rest-in-pitch.herokuapp.com/rest/shows/page/'+page).subscribe( data => {
        this.shows = data;
      });
    }
@@ -38,7 +39,7 @@ export class ShowComponent implements OnInit {
   search() :void {
     this.res = (<HTMLInputElement>document.getElementById("search")).value;
     if(this.res.length == 0) {
-      this.http.get('http://localhost:8080/rest-in-pitch/rest/shows/random/12').subscribe(data => {
+      this.http.get('https://rest-in-pitch.herokuapp.com/rest/shows/random/12').subscribe(data => {
       this.shows = data;
       });
     }
@@ -60,7 +61,7 @@ export class ShowComponent implements OnInit {
     }
     else params = new HttpParams().set("name",this.res);
 
-    this.http.get('http://localhost:8080/rest-in-pitch/rest/shows/search',
+    this.http.get('https://rest-in-pitch.herokuapp.com/rest/shows/search',
     {params: params}).subscribe(data => {
         this.shows = data;
       });

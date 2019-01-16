@@ -25,7 +25,7 @@ export class WatchlistComponent implements OnInit {
       this.username = String(Object.values(this.user)[0]);
     }
 
-    this.http.post('http://localhost:8080/rest-in-pitch/rest/watchlist', this.user).subscribe(data => {
+    this.http.post('https://rest-in-pitch.herokuapp.com/rest/watchlist', this.user).subscribe(data => {
           this.shows = data;
         }, (err) => {
           console.log(err);

@@ -27,7 +27,7 @@ export class ShowDetailComponent implements OnInit {
   }
 
   getShowDetail(id) {
-   this.http.get('http://localhost:8080/rest-in-pitch/rest/show/'+id).subscribe( data => {
+   this.http.get('https://rest-in-pitch.herokuapp.com/rest/show/'+id).subscribe( data => {
      this.show = data;
    });
  }
@@ -39,13 +39,13 @@ export class ShowDetailComponent implements OnInit {
  addToWatchlist() {
    let id = Object.values(this.show)[0];
    this.user = localStorage.getItem('currentUser') ||'{}';
-   let httpOpt = { 
+   let httpOpt = {
    		responseType: 'text'/*,
    		new HttpHeaders({
    			'Authorization': this.user
    		})*/
 	}
-   let preq = this.http.post('http://localhost:8080/rest-in-pitch/rest/watchlist/add/' + id, this.user, httpOpt);
+   let preq = this.http.post('https://rest-in-pitch.herokuapp.com/rest/watchlist/add/' + id, this.user, httpOpt);
      preq.subscribe(res => {
        }, (err) => {
          console.log(err);
