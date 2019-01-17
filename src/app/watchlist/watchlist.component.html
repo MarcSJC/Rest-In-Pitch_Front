@@ -17,6 +17,28 @@
 
 <div class="container">
   <hr class="my-4">
+  <h2 *ngIf="shows?.length > 0">Watchlist : {{shows?.length}} shows</h2>
+  <h2 *ngIf="shows?.length == 0">No results</h2>
+  <hr class="my-4">
+
+  <div class="row" >
+    <div class="col-3 mb-2" style="max-width: 16.5rem;" *ngFor="let show of shows">
+      <div class="card text-white bg-secondary mb-3"  style="max-width: 16.5rem;" >
+	         <img class="rounded" src={{show.image}} onerror="this.src='./assets/unavailable.png'" alt="show image" onkeypress=""  />
+           <div class="card-body text-center">
+             <h5 class="card-title" class="text-bold text-truncate"  style="max-width: 10rem;">
+              {{ show.name }}</h5>
+           </div>
+           <div class="card-footer text-center">
+            <a [routerLink]="['/show-detail', show.id]" class="btn btn-block-secondary" role="button">See more</a>
+           </div>
+     </div>
+   </div>
+ </div>
+</div>
+
+<!-- <div class="container">
+  <hr class="my-4">
   <h2>Watchlist :</h2>
   <hr class="my-4">
 
@@ -34,4 +56,4 @@
      </div>
    </div>
  </div>
-</div>
+</div> -->

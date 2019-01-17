@@ -11,23 +11,25 @@ import { ParamMap, Router, ActivatedRoute } from '@angular/router';
 
 export class ShowDetailComponent implements OnInit {
 
-  show= {};
+  show = {};
   user: {};
   username: string;
   userSize: number;
+  inWatchlist: boolean;
+  id:number;
 
   constructor(private route: ActivatedRoute, private http: HttpClient, private location: Location) { }
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('currentUser') ||'{}');
-
     this.userSize = Object.keys(this.user).length;
-
-    this.getShowDetail(this.route.snapshot.params['id']);
+    this.id = this.route.snapshot.params['id'];
+    this.getShowDetail(this.id);
+    this.checkWatchlist();
   }
 
-  getShowDetail(id) {
-   this.http.get('https://rest-in-pitch.herokuapp.com/rest/show/'+id).subscribe( data => {
+  getShowDetail(idshow) {
+   this.http.get('https://rest-in-pitch.herokuapp.com/rest/show/'+idshow).subscribe( data => {
      this.show = data;
    });
  }
@@ -37,21 +39,41 @@ export class ShowDetailComponent implements OnInit {
  }
 
  addToWatchlist() {
-   let id = Object.values(this.show)[0];
-   //this.user = localStorage.getItem('currentUser') ||'{}';
    this.user = JSON.parse(localStorage.getItem('currentUser') ||'{}');
-   /*let httpOpt = {
-   		responseType: 'text',
-   		new HttpHeaders({
-   			'Authorization': this.user
-   		})
-	}*/
-   let preq = this.http.post('https://rest-in-pitch.herokuapp.com/rest/watchlist/add/' + id, this.user, { responseType: 'text' });
+   let preq = this.http.post('https://rest-in-pitch.herokuapp.com/rest/watchlist/' + this.id, this.user, { responseType: 'text' });
      preq.subscribe(res => {
+        window.location.reload();
        }, (err) => {
          console.log(err);
        }
      );
- }
+   }
+
+   checkWatchlist() {
+     this.user = JSON.parse(localStorage.getItem('currentUser') ||'{}');
+     this.http.post('https://rest-in-pitch.herokuapp.com/rest/watchlist/check/'+this.id, this.user, { responseType: 'text' }).subscribe( data => {
+         this.inWatchlist = data.toString() === 'true' ? true : false;
+        }, (err) => {
+          console.log(err);
+      }
+   );
+   }
+
+   deleteFromWatchlist(){
+     this.user = JSON.parse(localStorage.getItem('currentUser') ||'{}');
+    //  this.http.delete('https://rest-in-pitch.herokuapp.com/rest/watchlist/'+this.id, { body : this.user, responseType: 'text' }).subscribe(res => {
+    //       window.location.reload();
+    //     }, (err) => {
+    //       console.log(err);
+    //     }
+    // );
+
+    this.http.request('DELETE','https://rest-in-pitch.herokuapp.com/rest/watchlist/'+this.id,{ body : this.user, responseType: 'text' }).subscribe(res => {
+          window.location.reload();
+        }, (err) => {
+          console.log(err);
+        }
+    );
+   }
 
 }

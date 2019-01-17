@@ -2,9 +2,10 @@
 <!-- <img class="rounded" src={{show.image}} onerror="this.src='./assets/unavailable.png'" alt="show image"style="opacity:0.2;" /> -->
 <div class="text-center" >
   <hr class="my-4">
-
-  <h1>{{ show?.name }}</h1>
-  <hr class="my-4">
+  <div class="jumbotron">
+  <h1 class="text-success">{{ show?.name }}</h1>
+</div>
+<hr class="my-4">
 
 </div>
   <div class="card border-light mb-3" >
@@ -20,15 +21,15 @@
       <hr class="my-4">
       <span>
         <dl class="list">
-        <dt>Summary :</dt>
+        <dt class="text-info">Summary :</dt>
         <dd>{{ show?.summary }}</dd>
-        <dt>Country : </dt>
+        <dt class="text-info">Country : </dt>
         <dd>{{ show?.country }}</dd>
-        <dt>Premiere : </dt>
+        <dt class="text-info">Premiere : </dt>
         <dd>{{ show?.premiere }}</dd>
-        <dt>Offsite : </dt>
+        <dt class="text-info">Offsite : </dt>
         <dd>{{ show?.offsite }}</dd>
-        <dt>Rating :</dt>
+        <dt class="text-info">Rating :</dt>
         <dd>{{ show?.rating }}</dd>
         </dl>
       </span>
@@ -38,8 +39,13 @@
 
       <div>
       <div *ngIf="userSize > 0">
-        <a (click)="backClicked()" class="btn btn-primary" role="button">Go Back</a>
-        <a (click)="addToWatchlist()" class="btn btn-success" role="button">Add to Watchlist</a>
+        <a (click)="backClicked()" class="btn btn-primary" role="button"> < Go Back</a>
+        <span *ngIf="!inWatchlist">
+          <a (click)="addToWatchlist()" class="btn btn-success float-right" role="button">Add to Watchlist</a>
+        </span>
+        <span *ngIf="inWatchlist">
+          <a (click)="deleteFromWatchlist()" class="btn btn-danger float-right" role="button">Delete from Watchlist</a>
+        </span>
       </div>
   </div>
 

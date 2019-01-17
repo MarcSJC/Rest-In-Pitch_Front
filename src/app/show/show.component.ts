@@ -19,12 +19,10 @@ export class ShowComponent implements OnInit {
     this.user = JSON.parse(localStorage.getItem('currentUser') ||'{}');
     this.userSize = Object.keys(this.user).length;
 
-    console.log(Object.keys(this.user).length);
     if(this.user != null) {
       this.username = String(Object.values(this.user)[0]);
     }
 
-    //http://localhost:8080/rest-in-pitch/rest/shows/random/12
     this.http.get('https://rest-in-pitch.herokuapp.com/rest/shows/random/12').subscribe(data => {
     this.shows = data;
   });
@@ -55,8 +53,9 @@ export class ShowComponent implements OnInit {
 
     let params;
     if(values.length != 0) {
+      params = new HttpParams().set("name",this.res);
       for (let i = 0; i < values.length; i++) {
-        params = new HttpParams().set("name",this.res).set("genre",values[i]);
+        params = params.append("genre",values[i]);
       }
     }
     else params = new HttpParams().set("name",this.res);
