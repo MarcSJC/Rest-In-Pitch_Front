@@ -13,6 +13,8 @@ export class UserCreateComponent implements OnInit {
 
   user = <any>{};
   log = <any>{};
+  errorlog: string;
+  errorreg:string
 
   constructor(private http: HttpClient, private router: Router, private location: Location) { }
 
@@ -31,11 +33,10 @@ export class UserCreateComponent implements OnInit {
             localStorage.setItem('currentUser', JSON.stringify(usertmp));
             this.router.navigate(['/show']);
             }, (err) => {
-              console.log(err);
             }
           );
       }, (err) => {
-          console.log(err);
+          this.errorreg=err.error;
         }
       );
   }
@@ -52,7 +53,7 @@ export class UserCreateComponent implements OnInit {
         localStorage.setItem('currentUser', JSON.stringify(usertmp));
         this.router.navigate(['/show']);
         }, (err) => {
-          console.log(err);
+          this.errorlog=err.error;
         }
       );
   }
